@@ -1,5 +1,5 @@
+import { useState } from 'react';
 import React from 'react'
-import Slider from 'react-slick';
 import FlippableCard from '../Cards/FlippabeCard';
 
 const cardData = [
@@ -16,27 +16,63 @@ const cardData = [
     // Add more cards as needed
   ];
 
+ 
+
 function carousel() {
 
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-      };
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+    const prevSlide = () => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === 0 ? cardData.length - 1 : prevIndex - 1
+      );
+    };
+
+    const nextSlide = () => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === cardData.length - 1 ? 0 : prevIndex + 1
+      );
+    };
+
   return (
-    <Slider {...settings}>
-      {cardData.map((card, index) => (
-        <FlippableCard
+
+    <>
+
+      <div className="relative overflow-hidden">
+        
+      <div className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {cardData.map((card, index) => (
+          <FlippableCard
           key={index}
           question={card.question}
           options={card.options}
           answer={card.answer}
         />
-      ))}
-    </Slider>
+        ))}
+      </div>
 
+    {/* Navigation Buttons */}
+    <button
+        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600 focus:outline-none"
+        onClick={prevSlide}
+        aria-label="Previous card"
+      >
+        &lt;
+      </button>
+      <button
+        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600 focus:outline-none"
+        onClick={nextSlide}
+        aria-label="Next card"
+      >
+        &gt;
+      </button>
+      </div>
+    </>
+
+
+      
   )
 }
 

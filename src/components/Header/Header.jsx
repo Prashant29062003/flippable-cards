@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Assuming you are using react-router for navigation
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -9,7 +9,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gray-800 text-white flex items-center justify-between p-4">
+    <header className="bg-gray-800 text-white flex items-center justify-between p-4 h-16">
       <div className="flex items-center">
         <Link to="/" className="flex items-center">
           <img src="/path/to/logo.png" alt="Logo" className="h-10 w-auto" />
