@@ -1,6 +1,6 @@
 import React from 'react'
 import Slider from 'react-slick';
-import FlippableCard from './FlippableCard';
+import {FlippableCard} from "./Cards/FlippableCard";
 
 const cardData = [
     {
@@ -16,7 +16,7 @@ const cardData = [
     // Add more cards as needed
   ];
 
-function carousel() {
+function Carousel() {
 
     const settings = {
         dots: true,
@@ -40,4 +40,4 @@ function carousel() {
   )
 }
 
-export default carousel
+export default Carousel
